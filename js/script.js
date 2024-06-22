@@ -27,12 +27,11 @@ if (width <= 767) {
 
 showElementsInit(elementsShow);
 
-function showElementsInit(i) {
-  slides.forEach(element => {
-    if (i > 0) {
+function showElementsInit(count) {
+  slides.forEach((element, index) => {
+    if (index < count) {
       element.classList.add('brands-slider__slide--show');
-    }    
-    i--;
+    }
   });
 }
 
@@ -42,7 +41,7 @@ function showElementsInit(i) {
 // })
 
 btnMore.addEventListener('click', () => {
-  if (areElementsShow) {
+  if (btnMore.classList.contains('shown')) {
     hideElements();
   } else {
     showElements();
@@ -50,12 +49,11 @@ btnMore.addEventListener('click', () => {
   btnMore.classList.toggle('shown');
 });
 
-
 function hideElements() {
-  let counter = 0;
-  slides.forEach(element => {
-    if (counter >= elementsShow) element.classList.remove('brands-slider__slide--show');
-    counter++;
+  slides.forEach((element, index) => {
+    if (index >= elementsShow) {
+      element.classList.remove('brands-slider__slide--show');
+    }
   });
   areElementsShow = false;
   btnMore.textContent = 'Показать все';
